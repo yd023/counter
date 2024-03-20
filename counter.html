@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<head>
+  <title>counter</title>
+</head>
+<html>
+<body>
+<div id="counterlist"></div>
+<p><button id="add">↓</button></p>
+<p>
+<script>// <![CDATA[
+    
+    const counterclass = class{
+        constructor(index){
+            this.index = index;
+            
+            this.num = 0;
+            this.para = document.createElement("p");
+            this.textbox = document.createElement("input");
+            this.para.appendChild(this.textbox);
+            
+            this.space = document.createElement("span");
+            this.space.innerHTML = "　";
+            this.para.appendChild(this.space);
+            
+            this.counter = document.createElement("button");
+            this.counter.innerHTML = 0;
+            this.para.appendChild(this.counter);
+            
+            this.space2 = document.createElement("span");
+            this.space2.innerHTML = "　";
+            this.para.appendChild(this.space2);
+            
+            this.clearbutton = document.createElement("button");
+            this.clearbutton.innerHTML = "Clear";
+            this.para.appendChild(this.clearbutton);
+            
+            this.space3= document.createElement("span");
+            this.space3.innerHTML = "　";
+            this.para.appendChild(this.space3);
+            
+            this.deletebutton = document.createElement("button");
+            this.deletebutton.innerHTML = "Delete";
+            this.para.appendChild(this.deletebutton);
+            counterlist.appendChild(this.para);
+            
+            this.counter.addEventListener('click', () => { 
+                if(++this.num>99999999){
+                    this.num = 0;
+                }
+               this.counter.innerHTML = this.num;});
+            
+            this.clearbutton.addEventListener('click',()=>{
+                this.num=0;
+                this.counter.innerHTML = this.num;
+            });
+            
+            this.deletebutton.addEventListener('click',()=>{
+                this.counter.remove();
+                this.textbox.remove();
+                this.clearbutton.remove();
+                this.deletebutton.remove();
+                this.para.remove();
+                line--;
+            });
+            
+        }
+        
+    }
+    
+    let list = [];
+    let line = 0;
+    
+    list.push(new counterclass(line++));
+    list.push(new counterclass(line++));
+    list.push(new counterclass(line++));
+    
+    add.onclick = function(){
+        if(line<100 && list.length<1000){
+        list.push(new counterclass(line++));
+        }
+    }
+    
+   
+
+// ]]></script>
+</p>
+
+</body>
+
+</html>
